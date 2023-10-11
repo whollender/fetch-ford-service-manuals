@@ -61,6 +61,7 @@ async function run({configPath, outputPath, cookieString}: CLIArgs) {
 
   const cookieStringData = await readFile(cookieString, {"encoding": "utf-8"});
   const transformedCookieString = transformCookieString(cookieStringData);
+  const cookieStringTrimmed = cookieStringData.trim();
 
   const wiringContext = await browser.newContext({
     ...pageParams,
@@ -89,14 +90,14 @@ async function run({configPath, outputPath, cookieString}: CLIArgs) {
     contentmarket: config.workshop.contentmarket,
   };
 
-  const wiringToC = await fetchTableOfContents(wiringParams, cookieStringData);
+  const wiringToC = await fetchTableOfContents(wiringParams, cookieStringTrimmed);
 
   await saveEntireWiring(
     outputPath,
     config.workshop,
     wiringParams,
     wiringToC,
-    cookieStringData,
+    cookieStringTrimmed,
     wiringPage
   );
 

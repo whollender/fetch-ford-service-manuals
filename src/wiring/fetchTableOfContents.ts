@@ -42,6 +42,7 @@ export default async function fetchTableOfContents(
     params: {
       ...params,
       fromPageBase: "https://www.fordtechservice.dealerconnection.com",
+      languageCode: "ENUSA",
     },
     headers: {
       Cookie: cookieString,
