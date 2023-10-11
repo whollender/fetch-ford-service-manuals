@@ -25,6 +25,10 @@ export default async function saveEntireManual(
       //   await mkdir(path, {recursive: true})
       // }
 
+      if(value.length === 0){
+	      console.log('Skipping empty folder');
+      }
+      else{
       // download and save document
       if (value.startsWith("http") && value.includes(".pdf")) {
         console.log(`Downloading manual PDF ${name} ${value}`);
@@ -67,6 +71,7 @@ export default async function saveEntireManual(
       );
 
       // await sleep(250);
+      }
     } else {
       // create folder and traverse
       const newPath = join(path, name);
